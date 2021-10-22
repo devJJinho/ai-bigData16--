@@ -11,14 +11,14 @@ class Model :
         return True
 
     def importFile(self,fname="students.txt"):
-        # try:
-        read_file=open(fname,'r')
-        for line in read_file:
-            sid,name,mid,fin=line.split('\t')
-            self.addStudent(int(sid),name,int(mid),int(fin))
-        read_file.close()
-        # except:
-            # print("file error")
+        try:
+            read_file=open(fname,'r')
+            for line in read_file:
+                sid,name,mid,fin=line.split('\t')
+                self.addStudent(int(sid),name,int(mid),int(fin))
+            read_file.close()
+        except:
+            print("file error")
 
     def getGrade(self,score):
         grade="A"
@@ -83,7 +83,6 @@ class Model :
 
 class View:
     def show(self,sidList):
-        # print(sidList)
         sidList.sort(key=lambda x:x[4],reverse=True)
         print("   Student           Name       Midterm      Final   Average      Grade")
         print("-"*73)
@@ -219,19 +218,6 @@ class Controller:
         fw.close()
         return True
 
-
-
-
-
-# model=Score()
-# model.importFile()
-# view=View()
-# grade="A"
-# (model.searchById(20180009))
-# aa=model.searchByGrade(grade)
-# print(aa)
-# view.show(aa)
-
 def main():
     import sys
     args=sys.argv[1:]
@@ -259,12 +245,4 @@ def main():
             if controller.quit():
                 return 
 
-    # controller.searchById(201800002)
-    # controller.searchByGrd('E')
-    # controller.rmStu(20180002)
-    # controller.showAll()
-
 main()
-
-
-
